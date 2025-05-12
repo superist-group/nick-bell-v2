@@ -2,7 +2,7 @@
 
 /**
 Template Name: Contact US Page
-**/
+ **/
 
 get_header();
 
@@ -15,14 +15,16 @@ get_header();
       <div
         class="flex lg:flex-nowrap lg:flex-row flex-col-reverse flex-wrap items-end gap-[64px] pt-[32px] max-w-[1318px] px-[15px] mx-auto">
         <div class="lg:w-[calc(100%-520px)] relative">
-					<div class="contact-person-bg absolute"></div>
-          <img class="relative" src="<?php echo get_template_directory_uri(); ?>/assets/images/contact-page-image.png" class="w-full">
+          <div class="contact-person-bg absolute"></div>
+          <img class="relative" src="<?php echo get_template_directory_uri(); ?>/assets/images/contact-page-image.png"
+            class="w-full">
         </div>
         <div class="lg:w-[488px] w-full text-white pt-[32px] lg:pb-[72px] relative">
           <div class="form-main-wrap relative">
             <form id="contactForm" class="mt-[36px]">
               <h1 class="md:text-[64px] text-[52px] text-white">Get in touch.</h1>
-              <p class="mt-[8px] text-[16px] font-tertiary mb-[36px] ">Media enquiries? Business plays? Reach out today.</p>
+              <p class="mt-[8px] text-[16px] font-tertiary mb-[36px] ">Media enquiries? Business plays? Reach out today.
+              </p>
               <div class="field-wrap mb-[31px]">
                 <label class="field-label ">Full name*</label>
                 <input class="input-field" placeholder="Your full name" type="text" name="full-name">
@@ -41,11 +43,10 @@ get_header();
               </div>
               <button type="submit" class="btn btn-primary min-w-[155px]">send</button>
             </form>
-            <div class="thankMessage text-center hidden absolute left-[50%] top-[50%] translate-[-50%] w-full p-4">
-              <h2 class="md:text-[20px] text-[28px] text-white">Thanks for connecting us!</h2>
-              <p class="mt-[8px] text-[14px] ">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ligula nisi, sodales eu lacinia et, lacinia laoreet dui.</p>
-            </div>
 
+            <div class="submit-message" style="display: none; margin-top: 1rem;">
+              Thank you for your submission.
+            </div>
           </div>
         </div>
       </div>
@@ -57,63 +58,71 @@ get_header();
 </main>
 
 <script>
-document.getElementById('contactForm').addEventListener('submit', function (e) {
-  e.preventDefault();
+  setTimeout(() => {
+    const forms = document.querySelectorAll(`#contactForm`);
 
-  const form = e.target;
-  const formWrap =  document.querySelector('.form-main-wrap')
-  const fields = ['full-name', 'email', 'phone', 'enquiry'];
-  let isValid = true;
+    forms.forEach(form => {
+      form.onsubmit = async (e) => {
+        e.preventDefault();
 
-  // Remove any existing error messages
-  form.querySelectorAll('.error-message').forEach(el => el.remove());
+        const formData = new FormData(e.target);
 
-  fields.forEach(fieldName => {
-    const input = form[fieldName];
-    const wrapper = input.parentElement;
+        const data = {
+          firstname: formData.get('full_name'),
+          email: formData.get('email'),
+          message: formData.get('message'),
+        }
 
-    let errorMessage = '';
+        const OFFICE_ID = "48534028"
+        const FORM_ID = "4c8875d2-1c10-45da-8416-0f3c7c462d85"
 
-    const value = input.value.trim();
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "formSubmissionSucess",
+          step: "complete",
 
-    if (fieldName === 'full-name' && !value) {
-      errorMessage = 'Full name is required.';
-    }
+          user_name: data.firstname,
+          user_email: data.email,
 
-    if (fieldName === 'email') {
-      const emailPattern = /^\S+@\S+\.\S+$/;
-      if (!value || !emailPattern.test(value)) {
-        errorMessage = 'Valid email is required.';
+          eventCategory: "Form Submission",
+          eventAction: "Contact Us",
+          eventLabel: "Submitted-" + window.location.pathname,
+        });
+
+        if (data.email) {
+          await fetch(
+            `https://api.hsforms.com/submissions/v3/integration/submit/${OFFICE_ID}/${FORM_ID}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                fields: window["getHubspotFields"]({
+                  ...data,
+
+                  lead_source_description: window.location.href,
+                  language_preference: "en",
+                  lead_reference: `Website - Contact Us Form`,
+                }),
+                context: {
+                  hutk: window["getCookie"]("hubspotutk"),
+                  pageUri: window.location.pathname,
+                  pageName: window.document.title,
+                },
+              }),
+            }
+          );
+        }
+
+        setTimeout(() => {
+          form.reset();
+          document.querySelector(`.submit-message`).style.display = "block";
+        }, 1000)
       }
-    }
 
-    if (fieldName === 'phone') {
-      const phonePattern = /^\d{10,}$/;
-      if (!value || !phonePattern.test(value.replace(/\s+/g, ''))) {
-        errorMessage = 'Valid phone number is required.';
-      }
-    }
-
-    // if (fieldName === 'enquiry' && !value) {
-    //   errorMessage = 'Please enter your enquiry.';
-    // }
-
-    if (errorMessage) {
-      isValid = false;
-      input.classList.add('border-red-500'); // Tailwind red border
-      const errorEl = document.createElement('p');
-      errorEl.className = 'error-message';
-      errorEl.textContent = errorMessage;
-      wrapper.appendChild(errorEl);
-    }
-  });
-
-  if (isValid) {
-    formWrap.classList.add('sent');
-    form.reset();
-  }
-});
+    })
+  }, 0);
 </script>
 
 
-<?php get_footer();?>
+<?php get_footer(); ?>
