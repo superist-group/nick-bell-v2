@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #006EA8;
+  --color-navy: #0A1125;
+  --color-royal-blue: #006EA8;
+  --color-blue: #038CC6;
+  --color-light-blue: #00C5FC;
+  --color-gray: #667085;
+  --color-light-gray: #D1D5DC;
+  --color-pearl: #F4F5F8;
+
+  --font-primary: "DM Serif Text";
+  --font-secondary: "IBM Plex Sans";
+  --font-tertiary: "IBM Plex Mono";
+  --font-jakarta: "Plus Jakarta Sans";
+
+  --gradient: 30.52% 57.58% at 37.19% 73.6%, #0A5191 0%, #0A1125 100%;
+  --gradient-2: 360deg, #BBC5F9 32%, #E0E3EB 100%;
+}
+
+@layer base {
+  h1,  h2,  h3,  h4,  h5 {
+    font-family: var(--font-primary);
+    color: var(--color-navy);
+    line-height: 1.2;
+  }
+  body {
+    font-family: var(--font-secondary);
+    line-height: 1.5;
+  }
+
+
+
+}
+
+
+@layer utilities {
+  @screen lg {
+    .order-1 { @apply order-1; }
+    .order-2 { @apply order-2; }
+    .order-3 { @apply order-3; }
+    .order-4 { @apply order-4; }
+    .order-5 { @apply order-5; }
+    .order-6 { @apply order-6; }
+    .order-7 { @apply order-7; }
+    .order-8 { @apply order-8; }
+    .order-9 { @apply order-9; }
+  }
+  
+  .font-primary {
+    font-family: var(--font-primary);
+  }
+  .font-secondary {
+    font-family: var(--font-secondary);
+  }
+  .font-tertiary {
+    font-family: var(--font-tertiary);
+  }
+
+  .btn{
+    @apply font-bold py-[14.5px] md:py-[18.5px] px-[24px] rounded-[3px] text-[18px] tracking-[4%] font-secondary font-medium inline-flex items-center justify-center uppercase w-full sm:w-auto cursor-pointer transition-opacity hover:opacity-80;
+  }
+  .btn-navy {
+    @apply bg-[var(--color-navy)] text-white;
+  }
+  .btn-primary {
+    @apply bg-[var(--color-royal-blue)] text-white ;
+  }
+  .btn-blue {
+    @apply bg-[var(--color-blue)] text-white;
+  }
+  .btn-light-blue {
+    @apply bg-[var(--color-light-blue)] text-navy;
+  }
+  .btn-outline {
+    @apply bg-transparent border-[2px] border-navy text-navy;
+  }
+  .btn-white{
+    @apply bg-white text-navy;
+  }
+
+  .tb_container{
+    @apply sm:max-w-[640px] md:max-w-[768px] lg:max-w-[1040px] xl:max-w-[1402px] 2xl:max-w-[1400px] mx-auto px-4 xl:px-[45px] ;
+  }
+  .tb_container--sm {
+    @apply lg:max-w-[900px] xl:max-w-[1178px];
+  }
+  .section-title{
+    @apply text-[52px] md:text-[72px];
+  }
+  .social-platform-icon{
+    @apply w-full sm:w-auto border border-[#fff] px-[18px] pt-[6px] pb-[8px] lg:pt-[6px] lg:pb-[10px] rounded-[12px]
+  }
+  .field-label{
+    @apply text-[16px] font-bold font-jakarta block;
+  }
+  .input-field{
+    @apply bg-white border-2 border-light-gray mt-[5px] placeholder-gray text-navy px-[14px] py-1 min-h-[48px] w-full rounded-[5px] outline-none  font-secondary font-medium;
+  }
+}
+
