@@ -73,6 +73,8 @@
 	</footer>
 </div>
 
+<script src="/wp-content/themes/the-bell/assets/js/hubspot.js"></script>
+
 <?php wp_footer(); ?>
 
 </body>
