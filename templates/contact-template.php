@@ -62,29 +62,6 @@ get_header();
 
 </main>
 
-<style>
-  .spinner-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .spinner {
-    width: 24px;
-    height: 24px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 1s ease-in-out infinite;
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-</style>
-
 <script>
   setTimeout(() => {
     const forms = document.querySelectorAll(`#contactForm`);
@@ -92,14 +69,6 @@ get_header();
     forms.forEach(form => {
       form.onsubmit = async (e) => {
         e.preventDefault();
-
-        // Show spinner
-        const spinnerContainer = form.querySelector('.spinner-container');
-        spinnerContainer.style.display = 'flex';
-
-        // Disable submit button
-        const submitButton = form.querySelector('button[type="submit"]');
-        submitButton.disabled = true;
 
         const formData = new FormData(e.target);
 
@@ -126,42 +95,31 @@ get_header();
         });
 
         if (data.email) {
-          try {
-            await fetch(
-              `https://api.hsforms.com/submissions/v3/integration/submit/${OFFICE_ID}/${FORM_ID}`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  fields: window["getHubspotFields"]({
-                    ...data,
+          await fetch(
+            `https://api.hsforms.com/submissions/v3/integration/submit/${OFFICE_ID}/${FORM_ID}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                fields: window["getHubspotFields"]({
+                  ...data,
 
-                    lead_source_description: window.location.href,
-                    language_preference: "en",
-                    lead_reference: `Website - Contact Us Form`,
-                  }),
-                  context: {
-                    hutk: window["getCookie"]("hubspotutk"),
-                    pageUri: window.location.pathname,
-                    pageName: window.document.title,
-                  },
+                  lead_source_description: window.location.href,
+                  language_preference: "en",
+                  lead_reference: `Website - Contact Us Form`,
                 }),
-              }
-            );
-          } catch (error) {
-            console.error('Form submission error:', error);
-          }
+                context: {
+                  hutk: window["getCookie"]("hubspotutk"),
+                  pageUri: window.location.pathname,
+                  pageName: window.document.title,
+                },
+              }),
+            }
+          );
         }
 
         setTimeout(() => {
-          // Hide spinner
-          spinnerContainer.style.display = 'none';
-
-          // Re-enable submit button
-          submitButton.disabled = false;
-
-          // Reset form and show success message
           form.reset();
           document.querySelector(`.submit-message`).style.display = "block";
         }, 1000)
