@@ -9,7 +9,7 @@
       <?php endif; ?>
 
       <?php if (get_sub_field('banner_title')): ?>
-        <h1 class="md:text-[112px] text-[88px] tracking-[-1%] text-navy">
+        <h1 class="md:text-[112px] text-[88px] tracking-[-1%] text-[--color-navy]">
           <?php echo esc_html(get_sub_field('banner_title')); ?>
         </h1>
       <?php endif; ?>
@@ -20,12 +20,12 @@
         </p>
       <?php endif; ?>
 
-      <?php 
-        $button = get_sub_field('banner_button');
-        if ($button):
-          $button_url = $button['url'];
-          $button_title = $button['title'];
-          $button_target = $button['target'] ? $button['target'] : '_self';
+      <?php
+      $button = get_sub_field('banner_button');
+      if ($button):
+        $button_url = $button['url'];
+        $button_title = $button['title'];
+        $button_target = $button['target'] ? $button['target'] : '_self';
       ?>
         <a class="btn btn-primary  mt-[32px] w-full md:w-auto" href="<?php echo esc_url($button_url); ?>" target="<?php echo esc_attr($button_target); ?>">
           <?php echo esc_html($button_title); ?>

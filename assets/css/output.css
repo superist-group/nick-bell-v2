@@ -2,11 +2,12 @@
 @layer properties;
 @layer theme, base, components, utilities;
 @layer theme {
-  :root, :host {
+  :root,
+  :host {
     --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-      "Courier New", monospace;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-white: #fff;
     --spacing: 0.25rem;
@@ -18,34 +19,48 @@
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
-    --color-primary: #006EA8;
-    --color-navy: #0A1125;
-    --color-royal-blue: #006EA8;
-    --color-blue: #038CC6;
-    --color-light-blue: #00C5FC;
+    --color-primary: #006ea8;
+    --color-navy: #0a1125;
+    --color-royal-blue: #006ea8;
+    --color-blue: #038cc6;
+    --color-light-blue: #00c5fc;
     --color-gray: #667085;
-    --color-light-gray: #D1D5DC;
-    --color-pearl: #F4F5F8;
+    --color-light-gray: #d1d5dc;
+    --color-pearl: #f4f5f8;
     --font-primary: "DM Serif Text";
     --font-secondary: "IBM Plex Sans";
     --font-tertiary: "IBM Plex Mono";
     --font-jakarta: "Plus Jakarta Sans";
-    --gradient: 30.52% 57.58% at 37.19% 73.6%, #0A5191 0%, #0A1125 100%;
-    --gradient-2: 360deg, #BBC5F9 32%, #E0E3EB 100%;
+    --gradient: 30.52% 57.58% at 37.19% 73.6%, #0a5191 0%, #0a1125 100%;
+    --gradient-2: 360deg, #bbc5f9 32%, #e0e3eb 100%;
   }
 }
 @layer base {
-  *, ::after, ::before, ::backdrop, ::file-selector-button {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     border: 0 solid;
   }
-  html, :host {
+  html,
+  :host {
     line-height: 1.5;
     -webkit-text-size-adjust: 100%;
     tab-size: 4;
-    font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+    font-family: var(
+      --default-font-family,
+      ui-sans-serif,
+      system-ui,
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+      "Noto Color Emoji"
+    );
     font-feature-settings: var(--default-font-feature-settings, normal);
     font-variation-settings: var(--default-font-variation-settings, normal);
     -webkit-tap-highlight-color: transparent;
@@ -59,7 +74,12 @@
     -webkit-text-decoration: underline dotted;
     text-decoration: underline dotted;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-size: inherit;
     font-weight: inherit;
   }
@@ -68,19 +88,37 @@
     -webkit-text-decoration: inherit;
     text-decoration: inherit;
   }
-  b, strong {
+  b,
+  strong {
     font-weight: bolder;
   }
-  code, kbd, samp, pre {
-    font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(
+      --default-mono-font-family,
+      ui-monospace,
+      SFMono-Regular,
+      Menlo,
+      Monaco,
+      Consolas,
+      "Liberation Mono",
+      "Courier New",
+      monospace
+    );
     font-feature-settings: var(--default-mono-font-feature-settings, normal);
-    font-variation-settings: var(--default-mono-font-variation-settings, normal);
+    font-variation-settings: var(
+      --default-mono-font-variation-settings,
+      normal
+    );
     font-size: 1em;
   }
   small {
     font-size: 80%;
   }
-  sub, sup {
+  sub,
+  sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -106,18 +144,33 @@
   summary {
     display: list-item;
   }
-  ol, ul, menu {
+  ol,
+  ul,
+  menu {
     list-style: none;
   }
-  img, svg, video, canvas, audio, iframe, embed, object {
+  img,
+  svg,
+  video,
+  canvas,
+  audio,
+  iframe,
+  embed,
+  object {
     display: block;
     vertical-align: middle;
   }
-  img, video {
+  img,
+  video {
     max-width: 100%;
     height: auto;
   }
-  button, input, select, optgroup, textarea, ::file-selector-button {
+  button,
+  input,
+  select,
+  optgroup,
+  textarea,
+  ::file-selector-button {
     font: inherit;
     font-feature-settings: inherit;
     font-variation-settings: inherit;
@@ -139,7 +192,8 @@
   ::placeholder {
     opacity: 1;
   }
-  @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
+  @supports (not (-webkit-appearance: -apple-pay-button)) or
+    (contain-intrinsic-size: 1px) {
     ::placeholder {
       color: currentcolor;
       @supports (color: color-mix(in lab, red, red)) {
@@ -163,16 +217,27 @@
   ::-webkit-datetime-edit-fields-wrapper {
     padding: 0;
   }
-  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {
+  ::-webkit-datetime-edit,
+  ::-webkit-datetime-edit-year-field,
+  ::-webkit-datetime-edit-month-field,
+  ::-webkit-datetime-edit-day-field,
+  ::-webkit-datetime-edit-hour-field,
+  ::-webkit-datetime-edit-minute-field,
+  ::-webkit-datetime-edit-second-field,
+  ::-webkit-datetime-edit-millisecond-field,
+  ::-webkit-datetime-edit-meridiem-field {
     padding-block: 0;
   }
   :-moz-ui-invalid {
     box-shadow: none;
   }
-  button, input:where([type="button"], [type="reset"], [type="submit"]), ::file-selector-button {
+  button,
+  input:where([type="button"], [type="reset"], [type="submit"]),
+  ::file-selector-button {
     appearance: button;
   }
-  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
     height: auto;
   }
   [hidden]:where(:not([hidden="until-found"])) {
@@ -522,7 +587,8 @@
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .transform {
-    transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
+    transform: var(--tw-rotate-x) var(--tw-rotate-y) var(--tw-rotate-z)
+      var(--tw-skew-x) var(--tw-skew-y);
   }
   .cursor-pointer {
     cursor: pointer;
@@ -613,21 +679,25 @@
     border-color: var(--color-red-500);
   }
   .border-t-\[\#D1D5DC\] {
-    border-top-color: #D1D5DC;
+    border-top-color: #d1d5dc;
   }
   .border-b-\[\#D1D5DC\] {
-    border-bottom-color: #D1D5DC;
+    border-bottom-color: #d1d5dc;
   }
   .bg-\[\#0A1125\] {
-    background-color: #0A1125;
+    background-color: #0a1125;
   }
   .bg-\[\#0a1124\] {
     background-color: #0a1124;
   }
   .bg-\[var\(--color-light-blue\)\]\/10 {
-    background-color: color-mix(in srgb, #00C5FC 10%, transparent);
+    background-color: color-mix(in srgb, #00c5fc 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-light-blue) 10%, transparent);
+      background-color: color-mix(
+        in oklab,
+        var(--color-light-blue) 10%,
+        transparent
+      );
     }
   }
   .bg-\[var\(--color-navy\)\] {
@@ -640,15 +710,19 @@
     background-color: var(--color-blue);
   }
   .bg-blue\/10 {
-    background-color: color-mix(in srgb, #038CC6 10%, transparent);
+    background-color: color-mix(in srgb, #038cc6 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-blue) 10%, transparent);
     }
   }
   .bg-light-blue\/10 {
-    background-color: color-mix(in srgb, #00C5FC 10%, transparent);
+    background-color: color-mix(in srgb, #00c5fc 10%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
-      background-color: color-mix(in oklab, var(--color-light-blue) 10%, transparent);
+      background-color: color-mix(
+        in oklab,
+        var(--color-light-blue) 10%,
+        transparent
+      );
     }
   }
   .bg-navy {
@@ -662,11 +736,15 @@
   }
   .bg-linear-\(--gradient-2\) {
     --tw-gradient-position: var(--gradient-2);
-    background-image: linear-gradient(var(--tw-gradient-stops,var(--gradient-2)));
+    background-image: linear-gradient(
+      var(--tw-gradient-stops, var(--gradient-2))
+    );
   }
   .bg-radial-\(--gradient\) {
     --tw-gradient-position: var(--gradient);
-    background-image: radial-gradient(var(--tw-gradient-stops,var(--gradient)));
+    background-image: radial-gradient(
+      var(--tw-gradient-stops, var(--gradient))
+    );
   }
   .bg-cover {
     background-size: cover;
@@ -901,7 +979,7 @@
   .text-light-gray {
     color: var(--color-light-gray);
   }
-  .text-navy {
+  .text-[--color-navy] {
     color: var(--color-navy);
   }
   .text-primary {
@@ -917,8 +995,14 @@
     text-transform: uppercase;
   }
   .transition {
-    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate, filter, -webkit-backdrop-filter, backdrop-filter;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-property: color, background-color, border-color, outline-color,
+      text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via,
+      --tw-gradient-to, opacity, box-shadow, transform, translate, scale, rotate,
+      filter, -webkit-backdrop-filter, backdrop-filter;
+    transition-timing-function: var(
+      --tw-ease,
+      var(--default-transition-timing-function)
+    );
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
   .ease-in-out {
@@ -1112,27 +1196,27 @@
   }
   .md\:w-1\/2 {
     @media (width >= 48rem) {
-      width: calc(1/2 * 100%);
+      width: calc(1 / 2 * 100%);
     }
   }
   .md\:w-2\/5 {
     @media (width >= 48rem) {
-      width: calc(2/5 * 100%);
+      width: calc(2 / 5 * 100%);
     }
   }
   .md\:w-3\/5 {
     @media (width >= 48rem) {
-      width: calc(3/5 * 100%);
+      width: calc(3 / 5 * 100%);
     }
   }
   .md\:w-5\/12 {
     @media (width >= 48rem) {
-      width: calc(5/12 * 100%);
+      width: calc(5 / 12 * 100%);
     }
   }
   .md\:w-7\/12 {
     @media (width >= 48rem) {
-      width: calc(7/12 * 100%);
+      width: calc(7 / 12 * 100%);
     }
   }
   .md\:w-\[33\.33\%\] {
@@ -1550,7 +1634,7 @@
   }
   .lg\:w-1\/3 {
     @media (width >= 64rem) {
-      width: calc(1/3 * 100%);
+      width: calc(1 / 3 * 100%);
     }
   }
   .lg\:w-\[380px\] {
@@ -1814,34 +1898,34 @@
     }
   }
   .\[\&\>p\]\:mt-\[10px\] {
-    &>p {
+    & > p {
       margin-top: 10px;
     }
   }
   .\[\&\>p\]\:text-\[16px\] {
-    &>p {
+    & > p {
       font-size: 16px;
     }
   }
   .\[\&\>p\]\:font-semibold {
-    &>p {
+    & > p {
       --tw-font-weight: var(--font-weight-semibold);
       font-weight: var(--font-weight-semibold);
     }
   }
   .\[\&\>p\]\:tracking-\[-1\%\] {
-    &>p {
+    & > p {
       --tw-tracking: -1%;
       letter-spacing: -1%;
     }
   }
   .\[\&\>p\]\:text-gray {
-    &>p {
+    & > p {
       color: var(--color-gray);
     }
   }
   .\[\&\>p\]\:md\:text-\[18px\] {
-    &>p {
+    & > p {
       @media (width >= 48rem) {
         font-size: 18px;
       }
@@ -1849,7 +1933,11 @@
   }
 }
 @layer base {
-  h1, h2, h3, h4, h5 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
     font-family: var(--font-primary);
     color: var(--color-navy);
     line-height: 1.2;
@@ -1917,7 +2005,10 @@
     letter-spacing: 4%;
     text-transform: uppercase;
     transition-property: opacity;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-timing-function: var(
+      --tw-ease,
+      var(--default-transition-timing-function)
+    );
     transition-duration: var(--tw-duration, var(--default-transition-duration));
     &:hover {
       @media (hover: hover) {
@@ -2099,8 +2190,12 @@
   inherits: false;
 }
 @layer properties {
-  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
-    *, ::before, ::after, ::backdrop {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or
+    ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {
+    *,
+    ::before,
+    ::after,
+    ::backdrop {
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;

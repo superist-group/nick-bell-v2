@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The template for displaying all single posts
  *
@@ -10,78 +11,157 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main">
-
-		<section class="mb-[80px] lg:mb-[140px] mt-[45px] lg:mt-[72px]">
-			<div class="tb_container">
-				<div class="lg:flex items-center">
-					<div class="text-wrap lg:max-w-[380px]  xl:max-w-[430px] ">
-						<h1 class="font-bold text-[44px] xl:text-[52px] font-secondary mb-[24px]"><?php the_title();?></h1>
-						<?php the_content();?>
-						<div class="gap-[16px] md:gap-[8px] mt-[24px] md:mt-[34px] hidden lg:flex">
-							<?php if ($youtube = get_field('social_media_youtube', 'option')) : ?>
-								<a href="<?php echo esc_url($youtube); ?>" target="_blank" rel="noopener">
-									<img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/youtube-colored.png" alt="Youtube">
-								</a>
-							<?php endif; ?>
-							<?php if ($spotify = get_field('social_media_spotify', 'option')) : ?>
-								<a href="<?php echo esc_url($spotify); ?>" target="_blank" rel="noopener">
-									<img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/spotify-colored.png" alt="Youtube">
-								</a>
-							<?php endif; ?>
-						</div>
-					</div>
-					<div class="video-wrap lg:pl-[50px] xl:pl-[150px] w-full  mt-[26px] lg:mt-0">
-						<div class="podcast-thumbnail relative">
-							<div id="thumbnailContainer" class="aspect-ratio-16-9 rounded-[16px] lg:rounded-[24px]  overflow-hidden" data-video-url="<?php echo get_field('podcast_video_link'); ?>">
-								<img id="thumbnailImage" class="w-full h-full object-cover" src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'full');?>" alt="Video Thumbnail">
-								<div class="play-button-overlay pulse-btn cursor-pointer z-10 absolute w-full h-full top-0 left-0 flex items-center justify-center">
-									<img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/play-btn.svg" alt="Play button" class="max-w-[56px] lg:max-w-[88px]">
-								</div>
-							</div>
-
-						</div>
-					</div>
-					<div class="flex justify-center gap-[16px] md:gap-[8px] mt-[24px] md:mt-[34px] lg:hidden">
-							<?php if ($youtube = get_field('social_media_youtube', 'option')) : ?>
-								<a href="<?php echo esc_url($youtube); ?>" target="_blank" rel="noopener">
-									<img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/youtube-colored.png" alt="Youtube">
-								</a>
-							<?php endif; ?>
-							<?php if ($spotify = get_field('social_media_spotify', 'option')) : ?>
-								<a href="<?php echo esc_url($spotify); ?>" target="_blank" rel="noopener">
-									<img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/spotify-colored.png" alt="Youtube">
-								</a>
-							<?php endif; ?>
-						</div>
-				</div>
-			</div>
-		</section>
-
-
-		<section class="bg-navy py-[56px] md:py-[58px] relative">
-			<img class="absolute inset-0 left-0 top-0 w-full h-full object-cover object-[70%_20%] md:object-center" src="<?php echo get_template_directory_uri(); ?>/assets/images/gradient-bg.jpg" alt="">
-			<div class="tb_container tb_container--sm relative">
-				<div class="md:flex ">
-					<div class="md:w-5/12 text-center">
-						<img class="mx-auto max-w-[222px]" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/the-bell-logo-white.png" alt="">
-						<?php if ($spotify = get_field('social_media_spotify', 'option')) : ?>
-							<a class="mt-[32px] lg:mt-[40px] block" href="<?php echo esc_url($spotify); ?>" target="_blank" rel="noopener">
-								<img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/spotify-colored.png" alt="Youtube">
-							</a>
-						<?php endif; ?>
-					</div>
-					<div class="md:w-7/12 relative block mt-[40px] md:mt-0" >
-							<iframe style="border-radius:12px" src="https://open.spotify.com/embed/episode/1nMmR3kUp8FwhcjFXjNgld" width="100%" height="168" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<?php get_template_part('template-blocks/latest-podcast'); ?>
-		<?php get_template_part('template-blocks/get-in-touch'); ?>
-
-	</main><!-- #main -->
 <?php
+$title = get_the_title();
+$content = get_the_content();
 
-get_footer();
+$thumbnail = get_field('thumbnail');
+$spotify_link = get_field('spotify_link');
+$youtube_link = get_field('youtube_link');
+$apple_music_link = get_field('apple_music_link');
+?>
+
+<style>
+.play-button-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.play-button-overlay:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.pulse-btn {
+  -webkit-animation: pulse 1.25s cubic-bezier(0.66, 0, 0, 1) infinite;
+  animation: pulse 1.25s cubic-bezier(0.66, 0, 0, 1) infinite;
+  box-shadow: 0 0 0 0 hsla(0, 0%, 85.1%, 0.7);
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.podcast-thumbnail {
+  width: 100%;
+  height: auto;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.podcast-thumbnail:hover {
+  opacity: 0.9;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.aspect-ratio-16-9 {
+  position: relative;
+  width: 100%;
+  padding-top: min(56.25%, 80vh);
+  /* Uses the smaller value between 56.25% (16:9 ratio) and 80vh */
+}
+
+.aspect-ratio-16-9 #thumbnailImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-height: 80vh;
+}
+</style>
+
+<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+  <div class="podcast-thumbnail relative">
+    <div id="thumbnailContainer" class="aspect-ratio-16-9">
+      <img id="thumbnailImage" class="w-full h-full object-cover" src="<?= $thumbnail['url'] ?>"
+        alt="<?= $thumbnail['alt'] ?>">
+      <?php if ($youtube_link) : ?>
+      <div class="play-button-overlay pulse-btn cursor-pointer z-10">
+        <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/play-btn.svg" alt="Play button"
+          width="80px" />
+      </div>
+      <?php endif; ?>
+    </div>
+  </div>
+
+  <section class="_container my-8">
+    <div class="mt-8 grid lg:grid-cols-2 gap-8">
+      <div>
+        <h1 class="text-5xl lg:text-[8rem]">
+          <?= $title ?>
+        </h1>
+        <p class="mt-4">
+          <?= $content ?>
+        </p>
+      </div>
+
+      <iframe id="spotify-embed" style="border-radius:12px" width="100%" height="152" frameborder="0" allowfullscreen=""
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <script>
+  const urlParts = new URL("<?= $spotify_link ?>");
+  const spotifyEmbedUrl = `https://open.spotify.com/embed-podcast/episode/${
+    urlParts.pathname.split('/').pop()
+  }`;
+
+  document.getElementById('spotify-embed').src = spotifyEmbedUrl;
+  </script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const youtube_link = '<?= $youtube_link ?>';
+    if (!youtube_link) return;
+
+    const thumbnailContainer = document.getElementById('thumbnailContainer');
+    const thumbnailImage = document.getElementById('thumbnailImage');
+
+    // Function to extract YouTube ID from URL
+    function getYoutubeId(url) {
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    // Set up click handler for the play button
+    thumbnailContainer.addEventListener('click', function(e) {
+      e.preventDefault();
+      console.log('Play button clicked');
+      const youtubeId = getYoutubeId(youtube_link);
+      if (youtubeId) {
+        thumbnailContainer.innerHTML = `
+          <div class="video-container">
+            <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${youtubeId}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </div>
+        `;
+
+        document.querySelector(".aspect-ratio-16-9").style.paddingTop = "0";
+      }
+    });
+  });
+  </script>
+
+  <?php include locate_template('template-blocks/podcast-episodes.php'); ?>
+</article>
+
+<?php get_footer(); ?>

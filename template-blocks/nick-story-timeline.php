@@ -1,6 +1,6 @@
-<?php 
-  //$bg_color    = get_sub_field('background_color'); 
-  $customClass = get_sub_field('custom_class');
+<?php
+//$bg_color    = get_sub_field('background_color'); 
+$customClass = get_sub_field('custom_class');
 ?>
 
 
@@ -11,12 +11,12 @@
       <h2 class=" text-[52px] lg:text-[62px] xl:text-[72px] capitalize leading-[1.3] text-center ">
         <?php echo get_sub_field('timeline_title');  ?>
       </h2>
-    <?php }?>
+    <?php } ?>
 
 
     <?php if (have_rows('timeline_block')) : ?>
       <?php $index = 0; ?>
-      <?php while (have_rows('timeline_block')) : the_row(); 
+      <?php while (have_rows('timeline_block')) : the_row();
         $title = get_sub_field('timeline_block_title');
         $description = get_sub_field('timeline_description');
         $big_image = get_sub_field('timeline_big_image');
@@ -33,7 +33,7 @@
             </div>
             <div class="<?php echo $is_even ? 'md:pl-[42px] xl:pl-[72px]' : 'md:pr-[42px] xl:pr-[72px]'; ?>">
               <?php if ($title): ?>
-                <h3 class="text-[36px] text-navy  tracking-[-1%] font-secondary font-bold">
+                <h3 class="text-[36px] text-[--color-navy]  tracking-[-1%] font-secondary font-bold">
                   <?php echo esc_html($title); ?>
                 </h3>
               <?php endif; ?>

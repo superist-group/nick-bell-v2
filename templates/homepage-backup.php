@@ -2,7 +2,7 @@
 
 /**
 Template Name: Homepage Backup
-**/
+ **/
 
 get_header();
 
@@ -29,11 +29,11 @@ get_header();
 
   </section>
 
-  <?php if( have_rows('content') ): ?>
-    <?php while( have_rows('content') ): the_row(); ?>
+  <?php if (have_rows('content')): ?>
+    <?php while (have_rows('content')): the_row(); ?>
       <?php
-        $layout = get_row_layout();
-        get_template_part('template-blocks/' . $layout);
+      $layout = get_row_layout();
+      get_template_part('template-blocks/' . $layout);
       ?>
     <?php endwhile; ?>
   <?php endif; ?>
@@ -44,15 +44,15 @@ get_header();
     <div class="pt-[127px] pb-[176px]">
       <div class="text-center mx-auto max-w-[664px]">
         <h3 class="md:text-[32px] text-[20px] text-gray uppercase">on air</h3>
-        <h2 class="md:text-[72px] text-[52px] text-navy capitalize leading-[1]">in the media</h2>
-        <p class="md:text-[20px] text-[18px] tracking-[-1%] font-medium text-navy">From prime-time TV to viral podcasts,
+        <h2 class="md:text-[72px] text-[52px] text-[--color-navy] capitalize leading-[1]">in the media</h2>
+        <p class="md:text-[20px] text-[18px] tracking-[-1%] font-medium text-[--color-navy]">From prime-time TV to viral podcasts,
           Nick's insights on building empires and extending human potential are dominating global media.</p>
       </div>
       <section class="md:flex md:gap-[65px] mt-[62px]">
         <div class="md:w-[380px]">
           <img src="https://localhost/the-bell/wp-content/uploads/2025/04/shark-tank.png" alt="shark tank">
           <h3
-            class="mt-[34px] md:mt-[64px] md:text-[28px] text-[24px] text-navy capitalize tracking-[-1%] font-bold font-secondary">
+            class="mt-[34px] md:mt-[64px] md:text-[28px] text-[24px] text-[--color-navy] capitalize tracking-[-1%] font-bold font-secondary">
             Shark Tank</h3>
           <div
             class="[&>p]:text-gray [&>p]:md:text-[18px] [&>p]:text-[16px] [&>p]:tracking-[-1%] [&>p]:mt-[10px] [&>p]:font-semibold">
@@ -74,7 +74,7 @@ get_header();
         <div class="md:w-[380px]">
           <img src="https://localhost/the-bell/wp-content/uploads/2025/04/shark-tank.png" alt="shark tank">
           <h3
-            class="mt-[34px] md:mt-[64px] md:text-[28px] text-[24px] text-navy capitalize tracking-[-1%] font-bold font-secondary">
+            class="mt-[34px] md:mt-[64px] md:text-[28px] text-[24px] text-[--color-navy] capitalize tracking-[-1%] font-bold font-secondary">
             Shark Tank</h3>
           <div
             class="[&>p]:text-gray [&>p]:md:text-[18px] [&>p]:text-[16px] [&>p]:tracking-[-1%] [&>p]:mt-[10px] [&>p]:font-semibold">
@@ -96,7 +96,7 @@ get_header();
         <div class="md:w-[380px]">
           <img src="https://localhost/the-bell/wp-content/uploads/2025/04/shark-tank.png" alt="shark tank">
           <h3
-            class="mt-[34px] md:mt-[64px] md:text-[28px] text-[24px] text-navy capitalize tracking-[-1%] font-bold font-secondary">
+            class="mt-[34px] md:mt-[64px] md:text-[28px] text-[24px] text-[--color-navy] capitalize tracking-[-1%] font-bold font-secondary">
             Shark Tank</h3>
           <div
             class="[&>p]:text-gray [&>p]:md:text-[18px] [&>p]:text-[16px] [&>p]:tracking-[-1%] [&>p]:mt-[10px] [&>p]:font-semibold">
@@ -122,7 +122,7 @@ get_header();
     <div class="tb_container py-[52px] md:py-[100px] ">
       <div class="text-center">
         <img src="https://localhost/the-bell/wp-content/uploads/2025/04/the-bell.png" class="mx-auto" alt="bell">
-        <h2 class="md:text-[72px] text-[44px] text-navy capitalize mt-[34px] md:mt-[0px]">See my latest podcast episodes</h2>
+        <h2 class="md:text-[72px] text-[44px] text-[--color-navy] capitalize mt-[34px] md:mt-[0px]">See my latest podcast episodes</h2>
       </div>
 
       <div class="podcastSlider mt-[48px] grid lg:grid-cols-2 xl:grid-cols-4 gap-[24px]">
@@ -135,7 +135,7 @@ get_header();
               class="aspect-2/1.1 object-cover w-full" alt="bell"></a>
           <div class="p-[24px]">
             <h3 class=" font-bold text-[20px] font-secondary">Lorem ipsum dolor sit amet consectetur erosac</h3>
-            <p class="text-[15px] mt-[10px] text-navy">Lorem ipsum dolor sit amet consectetur. Suspendisse
+            <p class="text-[15px] mt-[10px] text-[--color-navy]">Lorem ipsum dolor sit amet consectetur. Suspendisse
               sollicitudin gravida gravida aliquam nec ante.</p>
             <a class="mt-[23px] flex gap-[8px] font-bold text-[15px] text-primary items-center uppercase"><img
                 src="https://localhost/the-bell/wp-content/themes/the-bell/assets/images/play-icon.svg" alt="bell">
@@ -152,7 +152,7 @@ get_header();
               class="aspect-2/1.1 object-cover w-full" alt="bell"></a>
           <div class="p-[24px]">
             <h3 class=" font-bold text-[20px] font-secondary">Lorem ipsum dolor sit amet consectetur erosac</h3>
-            <p class="text-[15px] mt-[10px] text-navy">Lorem ipsum dolor sit amet consectetur. Suspendisse
+            <p class="text-[15px] mt-[10px] text-[--color-navy]">Lorem ipsum dolor sit amet consectetur. Suspendisse
               sollicitudin gravida gravida aliquam nec ante.</p>
             <a class="mt-[23px] flex gap-[8px] font-bold text-[15px] text-primary items-center uppercase"><img
                 src="https://localhost/the-bell/wp-content/themes/the-bell/assets/images/play-icon.svg" alt="bell">
@@ -168,7 +168,7 @@ get_header();
               class="aspect-2/1.1 object-cover w-full" alt="bell"></a>
           <div class="p-[24px]">
             <h3 class=" font-bold text-[20px] font-secondary">Lorem ipsum dolor sit amet consectetur erosac</h3>
-            <p class="text-[15px] mt-[10px] text-navy">Lorem ipsum dolor sit amet consectetur. Suspendisse
+            <p class="text-[15px] mt-[10px] text-[--color-navy]">Lorem ipsum dolor sit amet consectetur. Suspendisse
               sollicitudin gravida gravida aliquam nec ante.</p>
             <span class="mt-[23px] flex gap-[8px] font-bold text-[15px] text-primary items-center uppercase"><img
                 src="https://localhost/the-bell/wp-content/themes/the-bell/assets/images/play-icon.svg" alt="bell">
@@ -183,9 +183,9 @@ get_header();
             <img src="https://localhost/the-bell/wp-content/uploads/2025/04/podcast.png"
               class="aspect-2/1.1 object-cover w-full" alt="bell"></a>
           <div class="p-[24px]">
-            <h3 class=" font-bold text-[20px] text-navy font-secondary">Lorem ipsum dolor sit amet consectetur erosac
+            <h3 class=" font-bold text-[20px] text-[--color-navy] font-secondary">Lorem ipsum dolor sit amet consectetur erosac
             </h3>
-            <p class="text-[15px] mt-[10px] text-navy">Lorem ipsum dolor sit amet consectetur. Suspendisse
+            <p class="text-[15px] mt-[10px] text-[--color-navy]">Lorem ipsum dolor sit amet consectetur. Suspendisse
               sollicitudin gravida gravida aliquam nec ante.</p>
             <a class="mt-[23px] flex gap-[8px] font-bold text-[15px] text-primary items-center uppercase"><img
                 src="https://localhost/the-bell/wp-content/themes/the-bell/assets/images/play-icon.svg" alt="bell">
@@ -237,4 +237,4 @@ get_header();
 
 
 
-<?php get_footer();?>
+<?php get_footer(); ?>
