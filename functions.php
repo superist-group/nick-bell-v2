@@ -246,7 +246,7 @@ function all_podcast_list_shortcode($atts)
 <div id="podcast-list" class="border-t border-t-[#D1D5DC]">
   <?php if ($query->have_posts()) : ?>
   <?php while ($query->have_posts()) : $query->the_post();
-				$image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+				$image_url = get_field('thumbnail');
 				$hidden_class = ($count >= $initial_posts) ? 'tb-hidden' : '';
 			?>
   <div
@@ -254,7 +254,7 @@ function all_podcast_list_shortcode($atts)
     <div class="md:w-2/5">
       <a href="<?php the_permalink(); ?>" class="rounded-[16px]">
         <?php if ($image_url): ?>
-        <img src="<?php echo esc_url($image_url); ?>" class="aspect-2/1.1 object-cover w-full rounded-[16px]"
+        <img src="<?= $image_url['url'] ?>" class="aspect-2/1.1 object-cover w-full rounded-[16px]"
           alt="<?php the_title_attribute(); ?>">
         <?php endif; ?>
       </a>
