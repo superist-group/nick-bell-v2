@@ -27,7 +27,7 @@ get_header();
               </p>
               <div class="field-wrap mb-[31px]">
                 <label class="field-label ">Full name*</label>
-                <input class="input-field" placeholder="Your full name" type="text" name="full-name">
+                <input class="input-field" placeholder="Your full name" type="text" name="full_name">
               </div>
               <div class="field-wrap mb-[31px]">
                 <label class="field-label">Email*</label>
@@ -55,7 +55,6 @@ get_header();
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -63,70 +62,71 @@ get_header();
 </main>
 
 <script>
-  setTimeout(() => {
-    const forms = document.querySelectorAll(`#contactForm`);
+setTimeout(() => {
+  const forms = document.querySelectorAll(`#contactForm`);
 
-    forms.forEach(form => {
-      form.onsubmit = async (e) => {
-        e.preventDefault();
+  forms.forEach(form => {
+    form.onsubmit = async (e) => {
+      e.preventDefault();
 
-        const formData = new FormData(e.target);
+      const formData = new FormData(e.target);
 
-        const data = {
-          firstname: formData.get('full_name'),
-          email: formData.get('email'),
-          message: formData.get('message'),
-        }
-
-        const OFFICE_ID = "48534028"
-        const FORM_ID = "4c8875d2-1c10-45da-8416-0f3c7c462d85"
-
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "formSubmissionSucess",
-          step: "complete",
-
-          user_name: data.firstname,
-          user_email: data.email,
-
-          eventCategory: "Form Submission",
-          eventAction: "Contact Us",
-          eventLabel: "Submitted-" + window.location.pathname,
-        });
-
-        if (data.email) {
-          await fetch(
-            `https://api.hsforms.com/submissions/v3/integration/submit/${OFFICE_ID}/${FORM_ID}`, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                fields: window["getHubspotFields"]({
-                  ...data,
-
-                  lead_source_description: window.location.href,
-                  language_preference: "en",
-                  lead_reference: `Website - Contact Us Form`,
-                }),
-                context: {
-                  hutk: window["getCookie"]("hubspotutk"),
-                  pageUri: window.location.pathname,
-                  pageName: window.document.title,
-                },
-              }),
-            }
-          );
-        }
-
-        setTimeout(() => {
-          form.reset();
-          document.querySelector(`.submit-message`).style.display = "block";
-        }, 1000)
+      const data = {
+        firstname: formData.get('full_name'),
+        email: formData.get('email'),
+        message: formData.get('message'),
+        phone: formData.get('phone'),
       }
 
-    })
-  }, 0);
+      const OFFICE_ID = "48534028"
+      const FORM_ID = "4c8875d2-1c10-45da-8416-0f3c7c462d85"
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: "formSubmissionSucess",
+        step: "complete",
+
+        user_name: data.firstname,
+        user_email: data.email,
+
+        eventCategory: "Form Submission",
+        eventAction: "Contact Us",
+        eventLabel: "Submitted - " + window.location.pathname,
+      });
+
+      if (data.email) {
+        await fetch(
+          `https://api.hsforms.com/submissions/v3/integration/submit/${OFFICE_ID}/${FORM_ID}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              fields: window["getHubspotFields"]({
+                ...data,
+
+                lead_source_description: window.location.href,
+                language_preference: "en",
+                lead_reference: `Website - Contact Us Form`,
+              }),
+              context: {
+                hutk: window["getCookie"]("hubspotutk"),
+                pageUri: window.location.pathname,
+                pageName: window.document.title,
+              },
+            }),
+          }
+        );
+      }
+
+      setTimeout(() => {
+        form.reset();
+        document.querySelector(`.submit-message`).style.display = "block";
+      }, 1000)
+    }
+
+  })
+}, 0);
 </script>
 
 
