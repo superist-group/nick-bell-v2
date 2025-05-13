@@ -19,7 +19,7 @@ get_header();
           <p class="text-[30px]  md:text-[44px]">Entrepreneur</p>
           <p class="text-[15px] mt-[30px] md:text-[20px] ">Uni drop out who turned startups into a $500M global
             empire. Now he’s engineering the blueprint to live to 150.</p>
-          <a class="btn-primary mt-[46px] w-full md:w-auto">chat with nick</a>
+          <a href="/contact/" class="btn-primary mt-[46px] w-full md:w-auto">chat with nick</a>
         </div>
         <div class="flex justify-end md:absolute right-0 bottom-0 w-full md:max-w-[calc(100%-440px)]">
           <img src="<?php echo site_url() ?>/wp-content/uploads/2025/04/NB-Black.png" class="">
@@ -30,12 +30,12 @@ get_header();
   </section>
 
   <?php if (have_rows('content')): ?>
-    <?php while (have_rows('content')): the_row(); ?>
-      <?php
+  <?php while (have_rows('content')): the_row(); ?>
+  <?php
       $layout = get_row_layout();
       get_template_part('template-blocks/' . $layout);
       ?>
-    <?php endwhile; ?>
+  <?php endwhile; ?>
   <?php endif; ?>
 
 
@@ -45,7 +45,8 @@ get_header();
       <div class="text-center mx-auto max-w-[664px]">
         <h3 class="md:text-[32px] text-[20px] text-gray uppercase">on air</h3>
         <h2 class="md:text-[72px] text-[52px] text-[--color-navy] capitalize leading-[1]">in the media</h2>
-        <p class="md:text-[20px] text-[18px] tracking-[-1%] font-medium text-[--color-navy]">From prime-time TV to viral podcasts,
+        <p class="md:text-[20px] text-[18px] tracking-[-1%] font-medium text-[--color-navy]">From prime-time TV to viral
+          podcasts,
           Nick's insights on building empires and extending human potential are dominating global media.</p>
       </div>
       <section class="md:flex md:gap-[65px] mt-[62px]">
@@ -122,7 +123,8 @@ get_header();
     <div class="tb_container py-[52px] md:py-[100px] ">
       <div class="text-center">
         <img src="https://localhost/the-bell/wp-content/uploads/2025/04/the-bell.png" class="mx-auto" alt="bell">
-        <h2 class="md:text-[72px] text-[44px] text-[--color-navy] capitalize mt-[34px] md:mt-[0px]">See my latest podcast episodes</h2>
+        <h2 class="md:text-[72px] text-[44px] text-[--color-navy] capitalize mt-[34px] md:mt-[0px]">See my latest
+          podcast episodes</h2>
       </div>
 
       <div class="podcastSlider mt-[48px] grid lg:grid-cols-2 xl:grid-cols-4 gap-[24px]">
@@ -183,7 +185,8 @@ get_header();
             <img src="https://localhost/the-bell/wp-content/uploads/2025/04/podcast.png"
               class="aspect-2/1.1 object-cover w-full" alt="bell"></a>
           <div class="p-[24px]">
-            <h3 class=" font-bold text-[20px] text-[--color-navy] font-secondary">Lorem ipsum dolor sit amet consectetur erosac
+            <h3 class=" font-bold text-[20px] text-[--color-navy] font-secondary">Lorem ipsum dolor sit amet consectetur
+              erosac
             </h3>
             <p class="text-[15px] mt-[10px] text-[--color-navy]">Lorem ipsum dolor sit amet consectetur. Suspendisse
               sollicitudin gravida gravida aliquam nec ante.</p>

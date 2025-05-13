@@ -17,7 +17,7 @@ get_header();
         Nick ditched uni after one week to chase bigger dreams, building a $500M empire that spans the globe. Now he's
         engineering his personal blueprint to live to 150.
       </p>
-      <a class="btn-blue mt-[32px] w-full md:w-auto">chat with nick</a>
+      <a href="/contact/" class="btn-blue mt-[32px] w-full md:w-auto">chat with nick</a>
     </div>
   </div>
 

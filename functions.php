@@ -188,31 +188,34 @@ function latest_podcast_shortcode($atts)
 	if ($query->have_posts()) :
 		$count = 0;
 ?>
-		<div class="swiper-wrapper h-full grid lg:grid-cols-2 xl:grid-cols-4">
-			<?php while ($query->have_posts() && $count < 4) : $query->the_post();
+<div class="swiper-wrapper h-full grid lg:grid-cols-2 xl:grid-cols-4">
+  <?php while ($query->have_posts() && $count < 4) : $query->the_post();
 				if (get_the_ID() == $current_id) continue; // Skip current post if on single podcast
 
 				$count++;
-				$image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+				$thumbnail = get_field('thumbnail');
 			?>
-				<div class="swiper-slide rounded-[16px] relative z-1 overflow-hidden bg-linear-(--gradient-2) p-[1px] flex flex-col">
-					<a href="<?php the_permalink(); ?>">
-						<?php if ($image_url): ?>
-							<img src="<?php echo esc_url($image_url); ?>" class="aspect-2/1.1 object-cover w-full" alt="<?php the_title_attribute(); ?>">
-						<?php endif; ?>
-					</a>
-					<div class="p-[24px] bg-white rounded-b-[16px] min-h-[228px]">
-						<h3 class="font-bold text-[20px] font-secondary text-[--color-navy]"><?php the_title(); ?></h3>
-						<p class="text-[15px] mt-[10px] text-[--color-navy] line-clamp-3"><?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?></p>
-						<a href="<?php the_permalink(); ?>" class="mt-[23px] flex gap-[8px] font-bold text-[15px] text-primary items-center uppercase">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/play-icon.svg" alt="play icon">
-							Watch Episode
-						</a>
-					</div>
-				</div>
-			<?php endwhile; ?>
-		</div>
-	<?php endif;
+  <div class="swiper-slide rounded-[16px] relative z-1 overflow-hidden bg-linear-(--gradient-2) p-[1px] flex flex-col">
+    <a href="<?php the_permalink(); ?>">
+      <?php if ($thumbnail): ?>
+      <img src="<?= $thumbnail['url'] ?>" class="aspect-2/1.1 object-cover w-full"
+        alt="<?php the_title_attribute(); ?>">
+      <?php endif; ?>
+    </a>
+    <div class="p-[24px] bg-white rounded-b-[16px] min-h-[228px]">
+      <h3 class="font-bold text-[20px] font-secondary text-[--color-navy]"><?php the_title(); ?></h3>
+      <p class="text-[15px] mt-[10px] text-[--color-navy] line-clamp-3">
+        <?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?></p>
+      <a href="<?php the_permalink(); ?>"
+        class="mt-[23px] flex gap-[8px] font-bold text-[15px] text-primary items-center uppercase">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/play-icon.svg" alt="play icon">
+        Watch Episode
+      </a>
+    </div>
+  </div>
+  <?php endwhile; ?>
+</div>
+<?php endif;
 
 	wp_reset_postdata();
 
@@ -240,40 +243,44 @@ function all_podcast_list_shortcode($atts)
 
 	ob_start();
 	?>
-	<div id="podcast-list" class="border-t border-t-[#D1D5DC]">
-		<?php if ($query->have_posts()) : ?>
-			<?php while ($query->have_posts()) : $query->the_post();
+<div id="podcast-list" class="border-t border-t-[#D1D5DC]">
+  <?php if ($query->have_posts()) : ?>
+  <?php while ($query->have_posts()) : $query->the_post();
 				$image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
 				$hidden_class = ($count >= $initial_posts) ? 'tb-hidden' : '';
 			?>
-				<div class="md:flex gap-[32px] lg:gap-[40px] py-[24px] md:py-[30px] lg:py-[40px] items-center border-b border-b-[#D1D5DC] <?php echo $hidden_class; ?>">
-					<div class="md:w-2/5">
-						<a href="<?php the_permalink(); ?>" class="rounded-[16px]">
-							<?php if ($image_url): ?>
-								<img src="<?php echo esc_url($image_url); ?>" class="aspect-2/1.1 object-cover w-full rounded-[16px]" alt="<?php the_title_attribute(); ?>">
-							<?php endif; ?>
-						</a>
-					</div>
-					<div class="lg:pr-[16px] md:w-3/5 mt-[32px] lg:mt-[0]">
-						<h3 class="font-bold text-[24px] lg:text-[30px] font-secondary text-[--color-navy]"><?php the_title(); ?></h3>
-						<p class="lg:text-[16px] text-[15px] mt-[10px] text-[--color-navy] line-clamp-3"><?php echo wp_trim_words(get_the_excerpt(), 50, '...'); ?></p>
-						<a href="<?php the_permalink(); ?>" class="mt-[23px] flex gap-[8px] font-bold text-[15px] text-primary items-center uppercase">
-							<img src="<?php echo get_template_directory_uri(); ?>/assets/images/play-icon.svg" alt="play icon">
-							Watch Episode
-						</a>
-					</div>
-				</div>
-			<?php
+  <div
+    class="md:flex gap-[32px] lg:gap-[40px] py-[24px] md:py-[30px] lg:py-[40px] items-center border-b border-b-[#D1D5DC] <?php echo $hidden_class; ?>">
+    <div class="md:w-2/5">
+      <a href="<?php the_permalink(); ?>" class="rounded-[16px]">
+        <?php if ($image_url): ?>
+        <img src="<?php echo esc_url($image_url); ?>" class="aspect-2/1.1 object-cover w-full rounded-[16px]"
+          alt="<?php the_title_attribute(); ?>">
+        <?php endif; ?>
+      </a>
+    </div>
+    <div class="lg:pr-[16px] md:w-3/5 mt-[32px] lg:mt-[0]">
+      <h3 class="font-bold text-[24px] lg:text-[30px] font-secondary text-[--color-navy]"><?php the_title(); ?></h3>
+      <p class="lg:text-[16px] text-[15px] mt-[10px] text-[--color-navy] line-clamp-3">
+        <?php echo wp_trim_words(get_the_excerpt(), 50, '...'); ?></p>
+      <a href="<?php the_permalink(); ?>"
+        class="mt-[23px] flex gap-[8px] font-bold text-[15px] text-primary items-center uppercase">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/play-icon.svg" alt="play icon">
+        Watch Episode
+      </a>
+    </div>
+  </div>
+  <?php
 				$count++; // Increment the count variable
 			endwhile; ?>
-		<?php endif; ?>
-	</div>
+  <?php endif; ?>
+</div>
 
-	<?php if ($query->found_posts > $initial_posts) : ?>
-		<div class="text-center">
-			<button id="load-more" class="btn btn-outline !min-w-[250px] mx-auto mt-[40px]">view all</button>
-		</div>
-	<?php endif; ?>
+<?php if ($query->found_posts > $initial_posts) : ?>
+<div class="text-center">
+  <button id="load-more" class="btn btn-outline !min-w-[250px] mx-auto mt-[40px]">view all</button>
+</div>
+<?php endif; ?>
 
 <?php
 	wp_reset_postdata();
