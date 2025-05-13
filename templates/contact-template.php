@@ -39,7 +39,7 @@ get_header();
               </div>
               <div class="field-wrap mb-[24px]">
                 <label class="field-label">Enquiry</label>
-                <textarea class="input-field !min-h-[128px]" placeholder="Add message..." name="enquiry"></textarea>
+                <textarea class="input-field !min-h-[128px]" placeholder="Add message..." name="message"></textarea>
               </div>
               <div class="flex items-center">
                 <button type="submit" class="btn btn-primary min-w-[155px]">send</button>
@@ -57,8 +57,6 @@ get_header();
       </div>
     </div>
   </section>
-
-
 </main>
 
 <script>
@@ -75,7 +73,7 @@ setTimeout(() => {
         firstname: formData.get('full_name'),
         email: formData.get('email'),
         message: formData.get('message'),
-        phone: formData.get('phone'),
+        mobilephone: formData.get('phone'),
       }
 
       const OFFICE_ID = "48534028"
