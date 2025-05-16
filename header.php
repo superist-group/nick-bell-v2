@@ -31,7 +31,7 @@
 				<button class="menu-toggle block lg:hidden mr-4">
 					<img src="<?php echo get_template_directory_uri(); ?>/assets/images/header-menu.svg">
 				</button>
-				<?php the_custom_logo(); ?>
+				<!-- <?php the_custom_logo(); ?> -->
 			</div>
 			<nav id="site-navigation" class="main-navigation">
 				<div class="menu-wrap ">
