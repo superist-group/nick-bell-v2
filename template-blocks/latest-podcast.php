@@ -45,7 +45,7 @@
     <?php endif; ?>
 
     <div class="podcast-links md:absolute mx-auto md:right-0 bottom-0 flex gap-4 justify-center">
-      <a href="https://www.youtube.com/channel/UCWTq3725PNGiCprXTO1pNiA" target="_blank" rel="noopener">
+      <a href="https://www.youtube.com/@SavedByTheBellOfficial" target="_blank" rel="noopener">
         <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/youtube-colored.png"
           alt="Youtube">
       </a>
