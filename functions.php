@@ -141,7 +141,7 @@ function the_bell_scripts()
 {
 	wp_enqueue_style('swiper-slider-style', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css');
 	wp_enqueue_style('the-bell-style', get_stylesheet_uri(), array(), _S_VERSION);
-	wp_enqueue_style('tailwind-output', get_template_directory_uri() . '/assets/css/output.css');
+	wp_enqueue_style('tailwind-output', get_template_directory_uri() . '/assets/css/output.css' . '?v=0.1');
 	//wp_enqueue_script( 'tailwind-script', 'https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4' );
 
 
