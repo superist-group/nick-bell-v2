@@ -22,6 +22,7 @@
     --color-primary: #006ea8;
     --color-navy: #0a1125;
     --color-royal-blue: #006ea8;
+    --color-orange: #f17b0a;
     --color-blue: #038cc6;
     --color-light-blue: #00c5fc;
     --color-gray: #667085;
@@ -2027,7 +2028,7 @@
     color: var(--color-white);
   }
   .btn-primary {
-    background-color: var(--color-royal-blue);
+    background-color: var(--color-orange);
     color: var(--color-white);
   }
   .btn-blue {
