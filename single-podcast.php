@@ -79,7 +79,7 @@ $apple_music_link = get_field('apple_music_link');
       <div class="md:flex ">
         <div class="md:w-5/12 text-center">
           <img class="mx-auto max-w-[222px]"
-            src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/the-bell-logo-white.png" alt="">
+            src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/the-bell-logo-white.png?v=0.1" alt="">
           <?php if ($spotify_link) : ?>
           <a class="mt-[32px] lg:mt-[40px] block" href="<?= $spotify_link; ?>" target="_blank" rel="noopener">
             <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/spotify-colored.png"
