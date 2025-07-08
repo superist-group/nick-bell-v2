@@ -45,13 +45,18 @@
     <?php endif; ?>
 
     <div class="podcast-links md:absolute mx-auto md:right-0 bottom-0 flex gap-4 justify-center">
-      <a href="https://www.youtube.com/@SavedByTheBellOfficial" target="_blank" rel="noopener">
-        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/youtube-colored.png"
-          alt="Youtube">
+      <a href="<?php echo get_field('social_media_youtube', 'option')?>" target="_blank" rel="noopener">
+        <img height="50" class="mx-auto" style="height: 50px; width: auto;"
+          src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/youtube-colored.png" alt="Youtube">
       </a>
-      <a href="https://open.spotify.com/show/4GNpGtyifpXvBDptR03vl7" target="_blank" rel="noopener">
-        <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/spotify-colored.png"
-          alt="Youtube">
+      <a href="<?php echo get_field('social_media_spotify', 'option')?>" target="_blank" rel="noopener">
+        <img height="50" class="mx-auto" style="height: 50px; width: auto;"
+          src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/spotify-colored.png" alt="Youtube">
+      </a>
+      <a href="<?php echo get_field('social_media_apple_podcasts', 'option')?>" target="_blank" rel="noopener">
+        <img height="50" class="mx-auto" style="height: 50px; width: auto;"
+          src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/applepodcasts-colored.png"
+          alt="Apple Podcasts">
       </a>
     </div>
   </div>

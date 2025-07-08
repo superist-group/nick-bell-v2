@@ -13,7 +13,7 @@ get_header();
 $thumbnail = get_field('thumbnail');
 $spotify_link = get_field('spotify_link');
 $youtube_link = get_field('youtube_link');
-$apple_music_link = get_field('apple_music_link');
+$apple_podcasts_link = get_field('apple_music_link');
 ?>
 
 <main id="primary" class="site-main">
@@ -27,14 +27,21 @@ $apple_music_link = get_field('apple_music_link');
           <div class="gap-[16px] md:gap-[8px] mt-[24px] md:mt-[34px] hidden lg:flex">
             <?php if ($youtube_link) : ?>
             <a href="<?php $youtube_link ?>" target="_blank" rel="noopener">
-              <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/youtube-colored.png"
-                alt="Youtube">
+              <img style="height: 50px; width: auto;" class="mx-auto"
+                src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/youtube-colored.png" alt="Youtube">
             </a>
             <?php endif; ?>
             <?php if ($spotify_link) : ?>
             <a href="<?php $spotify_link ?>" target="_blank" rel="noopener">
-              <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/spotify-colored.png"
-                alt="Youtube">
+              <img style="height: 50px; width: auto;" class="mx-auto"
+                src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/spotify-colored.png" alt="Youtube">
+            </a>
+            <?php endif; ?>
+            <?php if ($apple_podcasts_link) : ?>
+            <a href="<?php $apple_podcasts_link ?>" target="_blank" rel="noopener">
+              <img style="height: 50px; width: auto;" class="mx-auto"
+                src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/applepodcasts-colored.png"
+                alt="Apple Podcasts">
             </a>
             <?php endif; ?>
           </div>
@@ -57,14 +64,21 @@ $apple_music_link = get_field('apple_music_link');
         <div class="flex justify-center gap-[16px] md:gap-[8px] mt-[24px] md:mt-[34px] lg:hidden">
           <?php if ($youtube_link) : ?>
           <a href="<?= $youtube_link; ?>" target="_blank" rel="noopener">
-            <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/youtube-colored.png"
-              alt="Youtube">
+            <img class="mx-auto" style="height: 50px; width: auto;"
+              src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/youtube-colored.png" alt="Youtube">
           </a>
           <?php endif; ?>
           <?php if ($spotify_link) : ?>
           <a href="<?= $spotify_link ?>" target="_blank" rel="noopener">
-            <img class="mx-auto" src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/spotify-colored.png"
-              alt="Youtube">
+            <img class="mx-auto" style="height: 50px; width: auto;"
+              src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/spotify-colored.png" alt="Youtube">
+          </a>
+          <?php endif; ?>
+          <?php if ($apple_podcasts_link) : ?>
+          <a href="<?= $apple_podcasts_link ?>" target="_blank" rel="noopener">
+            <img class="mx-auto" style="height: 50px; width: auto;"
+              src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/applepodcasts-colored.png"
+              alt="Apple Podcasts">
           </a>
           <?php endif; ?>
         </div>
