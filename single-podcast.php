@@ -14,7 +14,113 @@ $thumbnail = get_field('thumbnail');
 $spotify_link = get_field('spotify_link');
 $youtube_link = get_field('youtube_link');
 $apple_podcasts_link = get_field('apple_music_link');
+$transcript = get_field('transcript');
 ?>
+
+<style>
+.transcript-accordion {
+  margin-top: 40px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  overflow: hidden;
+}
+
+.transcript-header {
+  padding: 1rem 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-secondary);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-navy);
+  transition: background-color 0.2s ease;
+}
+
+.transcript-header:hover {
+  background: #f3f4f6;
+}
+
+.transcript-icon {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--color-navy);
+}
+
+.transcript-accordion.open .transcript-icon {
+  transform: rotate(45deg);
+}
+
+.transcript-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background: white;
+}
+
+.transcript-accordion.open .transcript-content {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.transcript-inner {
+  padding: 20px 20px 20px 0;
+}
+
+.transcript-block {
+  margin-bottom: 20px;
+}
+
+.transcript-block:last-child {
+  margin-bottom: 0;
+}
+
+.transcript-timestamp {
+  color: #6b7280;
+  font-size: 14px;
+  font-family: var(--font-tertiary);
+  margin-bottom: 4px;
+}
+
+.transcript-speaker {
+  font-weight: bold;
+  color: var(--color-navy);
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.transcript-text {
+  color: var(--color-navy);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .transcript-header {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+
+  .transcript-inner {
+    padding: 16px;
+  }
+
+  .transcript-text {
+    font-size: 14px;
+  }
+}
+</style>
 
 <main id="primary" class="site-main">
 
@@ -83,6 +189,20 @@ $apple_podcasts_link = get_field('apple_music_link');
           <?php endif; ?>
         </div>
       </div>
+
+      <?php if ($transcript) : ?>
+      <div class="transcript-accordion" id="transcriptAccordion">
+        <button class="transcript-header" onclick="toggleTranscript()">
+          <span>View Transcript</span>
+          <span class="transcript-icon">+</span>
+        </button>
+        <div class="transcript-content">
+          <div class="transcript-inner" id="transcriptContent">
+            <?php echo $transcript; ?>
+          </div>
+        </div>
+      </div>
+      <?php endif; ?>
     </div>
   </section>
 
@@ -150,6 +270,64 @@ $apple_podcasts_link = get_field('apple_music_link');
       }
     });
   });
+  </script>
+
+  <script>
+  formatTranscriptContent();
+
+
+  function toggleTranscript() {
+    const accordion = document.getElementById('transcriptAccordion');
+    const icon = accordion.querySelector('.transcript-icon');
+
+    accordion.classList.toggle('open');
+
+    if (accordion.classList.contains('open')) {} else {
+      icon.textContent = '+';
+    }
+  }
+
+  function formatTranscriptContent() {
+    const contentDiv = document.getElementById('transcriptContent');
+    const rawContent = contentDiv.textContent || contentDiv.innerText;
+
+    // Split by double line breaks to get paragraph blocks
+    const paragraphBlocks = rawContent.split('\n\n').filter(block => block.trim());
+
+    // Clear the content and rebuild with formatting
+    contentDiv.innerHTML = '';
+
+    paragraphBlocks.forEach(block => {
+      const lines = block.split('\n').filter(line => line.trim());
+
+      if (lines.length >= 2) {
+        const blockDiv = document.createElement('div');
+        blockDiv.className = 'transcript-block';
+
+        // First line - timestamp (grey)
+        const timestampDiv = document.createElement('div');
+        timestampDiv.className = 'transcript-timestamp';
+        timestampDiv.textContent = lines[0].trim();
+        blockDiv.appendChild(timestampDiv);
+
+        // Second line - speaker (bold)
+        const speakerDiv = document.createElement('div');
+        speakerDiv.className = 'transcript-speaker';
+        speakerDiv.textContent = lines[1].trim();
+        blockDiv.appendChild(speakerDiv);
+
+        // Remaining lines - transcript text (normal)
+        if (lines.length > 2) {
+          const textDiv = document.createElement('div');
+          textDiv.className = 'transcript-text';
+          textDiv.textContent = lines.slice(2).join(' ').trim();
+          blockDiv.appendChild(textDiv);
+        }
+
+        contentDiv.appendChild(blockDiv);
+      }
+    });
+  }
   </script>
 
   <?php get_template_part('template-blocks/latest-podcast'); ?>
