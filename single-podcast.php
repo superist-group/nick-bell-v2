@@ -132,19 +132,19 @@ $transcript = get_field('transcript');
           <?php the_content(); ?>
           <div class="gap-[16px] md:gap-[8px] mt-[24px] md:mt-[34px] hidden lg:flex">
             <?php if ($youtube_link) : ?>
-            <a href="<?php $youtube_link ?>" target="_blank" rel="noopener">
+            <a href="<?php echo $youtube_link ?>" target="_blank" rel="noopener">
               <img style="height: 50px; width: auto;" class="mx-auto"
                 src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/youtube-colored.png" alt="Youtube">
             </a>
             <?php endif; ?>
             <?php if ($spotify_link) : ?>
-            <a href="<?php $spotify_link ?>" target="_blank" rel="noopener">
+            <a href="<?php echo $spotify_link ?>" target="_blank" rel="noopener">
               <img style="height: 50px; width: auto;" class="mx-auto"
                 src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/spotify-colored.png" alt="Youtube">
             </a>
             <?php endif; ?>
             <?php if ($apple_podcasts_link) : ?>
-            <a href="<?php $apple_podcasts_link ?>" target="_blank" rel="noopener">
+            <a href="<?php echo $apple_podcasts_link ?>" target="_blank" rel="noopener">
               <img style="height: 50px; width: auto;" class="mx-auto"
                 src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/applepodcasts-colored.png"
                 alt="Apple Podcasts">
